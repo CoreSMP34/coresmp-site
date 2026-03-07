@@ -109,7 +109,7 @@ CoreSMP
 
 <!-- Buttons -->
 <button id="joinServerBtn" onclick="joinServer()">Join Server</button>
-<button id="discordBtn" onclick="discordJoin()">🔷 Join our Discord</button>
+<button id="discordBtn" onclick="discordJoin()"> Join our Discord</button>
 
 <!-- Server IP -->
 <div id="ipDisplay" class="ip-box" style="display:none;">
@@ -165,7 +165,7 @@ async function getServerStatus() {
 
         if(data.online){
             statusDiv.innerHTML = `
-                <b>Status:</b> Online ✅<br>
+                <b>Status:</b> offline ❌ <br>
                 <b>Players:</b> ${data.players.online} / ${data.players.max}<br>
                 <b>Version:</b> ${data.version}<br>
                 <b>Motd:</b> ${data.motd.clean.join(" ")}
@@ -187,4 +187,5 @@ setInterval(getServerStatus, 30000);
 
 </body>
 </html>
+
 
