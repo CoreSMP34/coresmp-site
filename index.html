@@ -42,6 +42,9 @@ button{
     border-radius:8px;
     cursor:pointer;
     transition:0.2s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px; /* space between emoji and text */
 }
 
 #joinServerBtn{
@@ -71,12 +74,14 @@ button{
     width:60%;
     margin-left:auto;
     margin-right:auto;
+    text-align:left;
 }
 
 footer{
     margin-top:50px;
     padding:20px;
     background:#020617;
+    font-size:14px;
 }
 </style>
 </head>
@@ -94,7 +99,7 @@ CoreSMP
 
 <!-- Buttons -->
 <button id="joinServerBtn" onclick="joinServer()">Join Server</button>
-<button id="discordBtn" onclick="discordJoin()">Join our Discord</button>
+<button id="discordBtn" onclick="discordJoin()">🔷 Join our Discord</button>
 
 <div id="ipDisplay" class="ip-box" style="display:none;">
 Server IP: <b>core.eagler.host</b>
