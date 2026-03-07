@@ -154,39 +154,12 @@ function discordJoin(){
     window.open("https://discord.gg/7SaT6rR8Br", "_blank");
 }
 
-// Fetch Minecraft server status from API
-async function getServerStatus() {
-    const statusDiv = document.getElementById("statusDisplay");
 
-    try {
-        // Using a public Minecraft server status API
-        const response = await fetch(`https://api.mcsrvstat.us/2/${SERVER_IP}`);
-        const data = await response.json();
-
-        if(data.online){
-            statusDiv.innerHTML = `
-                <b>Status:</b> offline ❌ <br>
-                <b>Players:</b> ${data.players.online} / ${data.players.max}<br>
-                <b>Version:</b> ${data.version}<br>
-                <b>Motd:</b> ${data.motd.clean.join(" ")}
-            `;
-        } else {
-            statusDiv.innerHTML = `<b>Status:</b> Offline ❌`;
-        }
-
-    } catch (error) {
-        statusDiv.innerHTML = `<b>Status:</b> Unknown ⚠️`;
-        console.error("Server status error:", error);
-    }
-}
-
-// Refresh status every 30 seconds
-getServerStatus();
-setInterval(getServerStatus, 30000);
 </script>
 
 </body>
 </html>
+
 
 
 
