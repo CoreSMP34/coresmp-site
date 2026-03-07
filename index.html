@@ -76,6 +76,16 @@ button{
     background:#4752c4;
 }
 
+#playOnlineBtn{
+    background:#f59e0b;
+    color:white;
+    margin-left:10px;
+}
+
+#playOnlineBtn:hover{
+    background:#d97706;
+}
+
 .rules{
     margin-top:40px;
     background:#1e293b;
@@ -128,7 +138,8 @@ CoreSMP
 
 <!-- Buttons -->
 <button id="joinServerBtn" onclick="joinServer()">Join Server</button>
-<button id="discordBtn" onclick="discordJoin()"> Join our Discord</button>
+<button id="discordBtn" onclick="discordJoin()">Join our Discord</button>
+<button id="playOnlineBtn" onclick="playOnline()">Play Online</button>
 
 <!-- Server IP -->
 <div id="ipDisplay" class="ip-box" style="display:none;">
@@ -170,6 +181,10 @@ function joinServer(){
 
 function discordJoin(){
     window.open("https://discord.gg/7SaT6rR8Br", "_blank");
+}
+
+function playOnline(){
+    window.open("https://eaglercraft.ir/play/tf1.12.2wasm-beta/", "_blank");
 }
 </script>
 
