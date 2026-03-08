@@ -5,58 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>⛏️ CoreSMP ⛏️</title>
     <style>
-        /* Smooth scrolling */
         html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             color: white;
             text-align: center;
-            background: #020617; 
+            /* Sleek Minecraft-themed gradient */
+            background: linear-gradient(180deg, #0f172a 0%, #064e3b 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* Background Video */
-        .video-background {
+        /* Subtle texture overlay for a "gaming" feel */
+        .texture-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: -2;
-        }
-
-        .video-background iframe {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 177.77vh;
-            height: 100vh;
-            transform: translate(-50%, -50%);
+            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.15;
+            z-index: -1;
             pointer-events: none;
         }
 
-        @media (min-aspect-ratio: 16/9) {
-            .video-background iframe {
-                width: 100vw;
-                height: 56.25vw;
-            }
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            z-index: -1;
-        }
-
         header {
-            background: rgba(34, 197, 94, 0.95);
+            background: rgba(34, 197, 94, 0.9);
             padding: 25px;
             font-size: 42px;
             font-weight: bold;
@@ -66,11 +43,11 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
         .hero {
-            height: 85vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -80,19 +57,23 @@
 
         .container {
             padding: 20px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .ip-box {
-            background: #1e293b;
-            padding: 15px 30px;
-            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 15px 35px;
+            border-radius: 12px;
             display: inline-block;
-            font-size: 22px;
+            font-size: 24px;
             margin-top: 25px;
             border: 2px solid #22c55e;
+            cursor: pointer;
+            transition: 0.3s;
         }
+
+        .ip-box:hover { background: #1e293b; transform: scale(1.02); }
 
         button {
             margin: 10px;
@@ -102,61 +83,60 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.2s;
         }
 
-        button:hover { transform: scale(1.05); }
+        button:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
         #joinServerBtn { background: #22c55e; color: white; }
         #discordBtn { background: #5865F2; color: white; }
         #playOnlineBtn { background: #f59e0b; color: white; }
 
         .section-box {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(30, 41, 59, 0.7);
             padding: 40px;
             border-radius: 15px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             text-align: left;
-            border: 1px solid #334155;
-            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
         }
 
         .section-box h3 {
             color: #facc15;
-            font-size: 28px;
+            font-size: 30px;
             margin-top: 0;
             border-bottom: 3px solid #22c55e;
             display: inline-block;
             padding-bottom: 5px;
-            margin-bottom: 25px;
         }
 
-        /* Responsive Staff Grid */
+        /* Staff Grid Layout */
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .staff-card {
-            background: #0f172a;
-            padding: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 25px;
             border-radius: 12px;
             text-align: center;
+            border-bottom: 5px solid transparent;
             transition: 0.3s;
-            border-bottom: 4px solid transparent;
         }
 
-        .staff-card:hover { transform: translateY(-5px); background: #1e293b; }
+        .staff-card:hover { transform: translateY(-5px); }
 
-        /* Role Borders & Colors */
         .owner-card { border-color: #ef4444; } 
         .h-dev-card { border-color: #3b82f6; }   
         .dev-card { border-color: #a855f7; }
         .builder-card { border-color: #06b6d4; }
 
-        .staff-info h4 { margin: 10px 0 5px; font-size: 18px; }
-        .staff-info p { margin: 0; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1.5px; }
+        .staff-info h4 { margin: 10px 0 5px; font-size: 20px; }
+        .staff-info p { margin: 0; font-weight: bold; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
         
         .rank-owner { color: #ef4444; }
         .rank-h-dev { color: #3b82f6; }
@@ -165,44 +145,42 @@
 
         .rules ul { list-style: none; padding: 0; }
         .rules li {
-            background: #0f172a;
+            background: rgba(15, 23, 42, 0.6);
             padding: 15px;
-            margin: 12px 0;
+            margin: 10px 0;
             border-radius: 8px;
-            border-left: 5px solid #22c55e;
+            border-left: 4px solid #22c55e;
         }
 
         footer {
-            padding: 40px 20px;
+            padding: 40px;
             background: #020617;
-            border-top: 2px solid #1e293b;
-            font-size: 14px;
+            border-top: 1px solid #1e293b;
         }
+
+        .footer-tag { opacity: 0.6; font-size: 14px; }
 
     </style>
 </head>
 <body>
 
-    <div class="video-background">
-        <iframe src="https://www.youtube.com/embed/ANkxRGvl1VY?autoplay=1&mute=1&loop=1&playlist=ANkxRGvl1VY&controls=0&showinfo=0&rel=0" frameborder="0" allow="autoplay; fullscreen"></iframe>
-    </div>
-    <div class="overlay"></div>
+    <div class="texture-overlay"></div>
 
     <header>CoreSMP</header>
 
     <div class="container">
         
         <div class="hero">
-            <h2 style="font-size: 2.5rem; margin-bottom: 10px;">⛏️ Welcome to CoreSMP! ⛏️</h2>
-            <p style="font-size: 1.2rem; color: #cbd5e1;">Adventure awaits on the most stable Eaglercraft SMP.</p>
+            <h2 style="font-size: 3rem; margin-bottom: 10px;">⛏️ Join the Adventure ⛏️</h2>
+            <p style="font-size: 1.3rem; opacity: 0.9;">A dedicated Survival Multiplayer experience.</p>
             
             <div class="buttons">
-                <button id="joinServerBtn" onclick="joinServer()">Join Server</button>
-                <button id="discordBtn" onclick="discordJoin()">Join Discord</button>
-                <button id="playOnlineBtn" onclick="playOnline()">Play Online</button>
+                <button id="joinServerBtn" onclick="joinServer()">Copy Server IP</button>
+                <button id="discordBtn" onclick="discordJoin()">Discord Server</button>
+                <button id="playOnlineBtn" onclick="playOnline()">Play in Browser</button>
             </div>
 
-            <div id="ipDisplay" class="ip-box" style="display:none;">
+            <div id="ipDisplay" class="ip-box" style="display:none;" onclick="joinServer()">
                 Server IP: <b id="serverIP">core.eagler.host</b>
             </div>
         </div>
@@ -243,40 +221,34 @@
             </div>
         </div>
 
-        <div class="section-box">
-            <h3>Why Join CoreSMP?</h3>
-            <p>We pride ourselves on having a dedicated staff team that keeps the game fair and exciting. From custom plugins to massive community builds, there is always something happening on CoreSMP.</p>
-        </div>
-
         <div class="section-box rules">
             <h3>Server Rules</h3>
             <ul>
                 <li>Be respectful to all players</li>
-                <li>No hacking or cheating</li>
-                <li>No griefing or stealing</li>
-                <li>No spam or advertising</li>
-                <li>Listen to staff members</li>
-                <li>Use appropriate usernames and skins</li>
-                <li>Have fun!</li>
+                <li>No hacking or cheating (Play fair!)</li>
+                <li>No griefing or stealing from others</li>
+                <li>No spam or advertising other servers</li>
+                <li>Follow staff directions at all times</li>
+                <li>Keep the community friendly and fun</li>
             </ul>
         </div>
 
     </div>
 
     <footer>
-        <p>© 2026 CoreSMP Server | Hosted by GitHub Pages</p>
+        <p>© 2026 CoreSMP Server</p>
+        <p class="footer-tag">Hosted by GitHub Pages | Powered by Eaglercraft</p>
     </footer>
 
     <script>
         const SERVER_IP = "core.eagler.host";
-        document.getElementById("serverIP").innerText = SERVER_IP;
 
         function joinServer(){
-            document.getElementById("ipDisplay").style.display = "block";
+            document.getElementById("ipDisplay").style.display = "inline-block";
             navigator.clipboard.writeText(SERVER_IP);
             document.getElementById("joinServerBtn").innerText = "IP Copied!";
             setTimeout(() => {
-                document.getElementById("joinServerBtn").innerText = "Join Server";
+                document.getElementById("joinServerBtn").innerText = "Copy Server IP";
             }, 2000);
         }
 
@@ -285,4 +257,3 @@
     </script>
 </body>
 </html>
-
