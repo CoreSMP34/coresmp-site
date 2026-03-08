@@ -6,12 +6,44 @@
 <title>CoreSMP</title>
 
 <style>
+
 body{
     margin:0;
     font-family:Arial, sans-serif;
     background:#0f172a;
     color:white;
     text-align:center;
+    position:relative;
+}
+
+/* Background video */
+
+.video-background{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+    overflow:hidden;
+}
+
+.video-background iframe{
+    width:100vw;
+    height:100vh;
+    pointer-events:none;
+}
+
+/* Dark overlay so text is readable */
+
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:-1;
 }
 
 header{
@@ -103,7 +135,7 @@ button{
 }
 
 .rules ul{
-    list-style: none;
+    list-style:none;
     padding:0;
 }
 
@@ -122,10 +154,23 @@ footer{
     background:#020617;
     font-size:14px;
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- Background video -->
+<div class="video-background">
+<iframe
+src="https://www.youtube.com/embed/ANkxRGvl1VY?autoplay=1&mute=1&loop=1&playlist=ANkxRGvl1VY&controls=0&showinfo=0&rel=0"
+frameborder="0"
+allow="autoplay; fullscreen"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="overlay"></div>
 
 <header>
 CoreSMP
@@ -137,26 +182,29 @@ CoreSMP
 <p>A fun survival multiplayer Minecraft server.</p>
 
 <!-- Buttons -->
+
 <button id="joinServerBtn" onclick="joinServer()">Join Server</button>
 <button id="discordBtn" onclick="discordJoin()">Join our Discord</button>
 <button id="playOnlineBtn" onclick="playOnline()">Play Online</button>
 
 <!-- Server IP -->
+
 <div id="ipDisplay" class="ip-box" style="display:none;">
 Server IP: <b id="serverIP">core.eagler.host</b>
 </div>
 
 <!-- Server Rules -->
+
 <div class="rules">
 <h3>Server Rules</h3>
 <ul>
-    <li>Be respectful to all players</li>
-    <li>No hacking or cheating</li>
-    <li>No griefing or stealing</li>
-    <li>No spam or advertising</li>
-    <li>Listen to staff members</li>
-    <li>Use appropriate usernames and skins</li>
-    <li>Have fun!</li>
+<li>Be respectful to all players</li>
+<li>No hacking or cheating</li>
+<li>No griefing or stealing</li>
+<li>No spam or advertising</li>
+<li>Listen to staff members</li>
+<li>Use appropriate usernames and skins</li>
+<li>Have fun!</li>
 </ul>
 </div>
 
@@ -167,16 +215,18 @@ Server IP: <b id="serverIP">core.eagler.host</b>
 </footer>
 
 <script>
-// Change your server IP here anytime
+
 const SERVER_IP = "core.eagler.host";
-const SERVER_PORT = 25565; // Default Minecraft port
+const SERVER_PORT = 25565;
 
 document.getElementById("serverIP").innerText = SERVER_IP;
 
 function joinServer(){
     document.getElementById("ipDisplay").style.display = "block";
     navigator.clipboard.writeText(SERVER_IP);
-    alert("Server IP copied: " + SERVER_IP);
+
+    document.getElementById("joinServerBtn").innerText = "IP Copied!";
+    setTimeout(()=>{document.getElementById("joinServerBtn").innerText="Join Server"},2000);
 }
 
 function discordJoin(){
@@ -186,6 +236,7 @@ function discordJoin(){
 function playOnline(){
     window.open("https://eaglercraft.ir/play/tf1.12.2wasm-beta/", "_blank");
 }
+
 </script>
 
 </body>
