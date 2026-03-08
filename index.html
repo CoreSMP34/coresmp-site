@@ -12,7 +12,7 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
             color: white;
             text-align: center;
-            /* Using your lagoon image as a fixed background */
+            /* Lagoon background */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                         url('https://wallpapers.com/images/hd/calm-waters-in-the-lagoon-minecraft-hd-3pi6i7mznvfvk828.jpg');
             background-size: cover;
@@ -37,7 +37,7 @@
         }
 
         .hero {
-            height: 70vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -51,7 +51,6 @@
             margin: 0 auto;
         }
 
-        /* Glassmorphism Effect for readability */
         .section-box {
             background: rgba(15, 23, 42, 0.75);
             padding: 40px;
@@ -59,7 +58,7 @@
             margin-bottom: 40px;
             text-align: left;
             border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(12px); /* Frosty glass effect */
+            backdrop-filter: blur(12px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
@@ -70,7 +69,15 @@
             border-bottom: 3px solid #22c55e;
             display: inline-block;
             padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .sub-text {
+            display: block;
+            font-size: 14px;
+            color: #cbd5e1;
             margin-bottom: 25px;
+            font-style: italic;
         }
 
         .ip-box {
@@ -81,7 +88,6 @@
             font-size: 24px;
             margin-top: 25px;
             border: 2px solid #22c55e;
-            backdrop-filter: blur(5px);
         }
 
         button {
@@ -102,7 +108,6 @@
         #discordBtn { background: #5865F2; color: white; }
         #playOnlineBtn { background: #f59e0b; color: white; }
 
-        /* Staff Grid */
         .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -143,7 +148,6 @@
             padding: 40px;
             background: rgba(2, 6, 23, 0.9);
             border-top: 2px solid #22c55e;
-            backdrop-filter: blur(10px);
         }
     </style>
 </head>
@@ -155,7 +159,7 @@
         
         <div class="hero">
             <h1 style="font-size: 3.5rem; text-shadow: 2px 4px 10px rgba(0,0,0,0.8);">⛏️ Join the Adventure ⛏️</h1>
-            <p style="font-size: 1.5rem; text-shadow: 1px 2px 5px rgba(0,0,0,0.8);">Your world, your rules, your community.</p>
+            <p style="font-size: 1.5rem; text-shadow: 1px 2px 5px rgba(0,0,0,0.8);">Your world, your community.</p>
             
             <div class="buttons">
                 <button id="joinServerBtn" onclick="joinServer()">Copy Server IP</button>
@@ -169,7 +173,8 @@
         </div>
 
         <div class="section-box">
-            <h3>Server Leadership</h3>
+            <h3>The Team</h3>
+            <span class="sub-text">These are the people who run and keep our server alive 24/7.</span>
             <div class="staff-grid">
                 <div class="staff-card owner-card">
                     <h4>MrFrenchGuy23</h4>
@@ -192,11 +197,6 @@
                     <p class="rank-builder">🔨 Builder</p>
                 </div>
             </div>
-        </div>
-
-        <div class="section-box">
-            <h3>About the Server</h3>
-            <p>CoreSMP is a player-driven survival multiplayer server designed for longevity and friendship. We provide a lag-free experience with a dedicated staff team and an active community of builders and survivors.</p>
         </div>
 
         <div class="section-box rules">
