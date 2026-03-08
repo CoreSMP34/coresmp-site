@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +11,11 @@
 body{
     margin:0;
     font-family:Arial, sans-serif;
-    background:#0f172a;
     color:white;
     text-align:center;
-    position:relative;
 }
 
-/* Background video */
+/* Background Video */
 
 .video-background{
     position:fixed;
@@ -24,17 +23,30 @@ body{
     left:0;
     width:100%;
     height:100%;
-    z-index:-1;
     overflow:hidden;
+    z-index:-2;
 }
 
 .video-background iframe{
-    width:100vw;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:177.77vh;
     height:100vh;
+    transform:translate(-50%, -50%);
     pointer-events:none;
 }
 
-/* Dark overlay so text is readable */
+/* Correct scaling for different screens */
+
+@media (min-aspect-ratio:16/9){
+.video-background iframe{
+    width:100vw;
+    height:56.25vw;
+}
+}
+
+/* Dark overlay */
 
 .overlay{
     position:fixed;
@@ -47,7 +59,7 @@ body{
 }
 
 header{
-    background:#22c55e;
+    background:rgba(34,197,94,0.9);
     padding:30px;
     font-size:45px;
     font-weight:bold;
@@ -66,16 +78,6 @@ header{
     margin-top:15px;
 }
 
-.status-box{
-    background:#1e293b;
-    padding:20px;
-    border-radius:10px;
-    display:inline-block;
-    font-size:18px;
-    margin-top:15px;
-    min-width:250px;
-}
-
 button{
     margin-top:20px;
     padding:14px 30px;
@@ -84,9 +86,6 @@ button{
     border-radius:8px;
     cursor:pointer;
     transition:0.2s;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
 }
 
 #joinServerBtn{
@@ -131,7 +130,6 @@ button{
 
 .rules h3{
     color:#facc15;
-    margin-bottom:15px;
 }
 
 .rules ul{
@@ -145,14 +143,12 @@ button{
     padding:10px 15px;
     margin:8px 0;
     border-radius:8px;
-    font-size:18px;
 }
 
 footer{
     margin-top:50px;
     padding:20px;
     background:#020617;
-    font-size:14px;
 }
 
 </style>
@@ -160,13 +156,13 @@ footer{
 
 <body>
 
-<!-- Background video -->
+<!-- Background Video -->
+
 <div class="video-background">
 <iframe
 src="https://www.youtube.com/embed/ANkxRGvl1VY?autoplay=1&mute=1&loop=1&playlist=ANkxRGvl1VY&controls=0&showinfo=0&rel=0"
 frameborder="0"
-allow="autoplay; fullscreen"
-allowfullscreen>
+allow="autoplay; fullscreen">
 </iframe>
 </div>
 
@@ -181,19 +177,13 @@ CoreSMP
 <h2>Welcome to CoreSMP!</h2>
 <p>A fun survival multiplayer Minecraft server.</p>
 
-<!-- Buttons -->
-
 <button id="joinServerBtn" onclick="joinServer()">Join Server</button>
 <button id="discordBtn" onclick="discordJoin()">Join our Discord</button>
 <button id="playOnlineBtn" onclick="playOnline()">Play Online</button>
 
-<!-- Server IP -->
-
 <div id="ipDisplay" class="ip-box" style="display:none;">
 Server IP: <b id="serverIP">core.eagler.host</b>
 </div>
-
-<!-- Server Rules -->
 
 <div class="rules">
 <h3>Server Rules</h3>
@@ -217,24 +207,25 @@ Server IP: <b id="serverIP">core.eagler.host</b>
 <script>
 
 const SERVER_IP = "core.eagler.host";
-const SERVER_PORT = 25565;
 
 document.getElementById("serverIP").innerText = SERVER_IP;
 
 function joinServer(){
-    document.getElementById("ipDisplay").style.display = "block";
-    navigator.clipboard.writeText(SERVER_IP);
+document.getElementById("ipDisplay").style.display = "block";
+navigator.clipboard.writeText(SERVER_IP);
 
-    document.getElementById("joinServerBtn").innerText = "IP Copied!";
-    setTimeout(()=>{document.getElementById("joinServerBtn").innerText="Join Server"},2000);
+document.getElementById("joinServerBtn").innerText = "IP Copied!";
+setTimeout(function(){
+document.getElementById("joinServerBtn").innerText="Join Server";
+},2000);
 }
 
 function discordJoin(){
-    window.open("https://discord.gg/7SaT6rR8Br", "_blank");
+window.open("https://discord.gg/7SaT6rR8Br","_blank");
 }
 
 function playOnline(){
-    window.open("https://eaglercraft.ir/play/tf1.12.2wasm-beta/", "_blank");
+window.open("https://eaglercraft.ir/play/tf1.12.2wasm-beta/","_blank");
 }
 
 </script>
